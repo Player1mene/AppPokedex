@@ -1,0 +1,51 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main {
+    padding: 30px 2%;
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: rgb(0, 35, 133);
+}
+
+.main h2 {
+    text-align: center;
+    color: yellow;
+}
+
+#quantidade {
+    width: 100%;
+    padding: 5px 2%;
+}
+
+.poke-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.poke-single {
+    padding: 20px;
+    background-color: rgb(151, 146, 146);
+    width: 29%;
+    margin: 20px 2%;
+}
+
+.poke-single img {
+    width: 100%;
+}
+
+@media screen and (max-width: 500px) {
+    .poke-single {
+        width: 100%;
+        text-align: center;
+    }
+
+    .poke-single img {
+        max-width: 300px;
+    }
+}

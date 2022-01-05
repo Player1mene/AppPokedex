@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>PokeDex</title>
+</head>
+<body>
+    <div class="main">
+        <h2>PokeDex</h2>
+        <input type="number" name="numero" id="quantidade">
+        <div class="poke-wrapper">
+
+        </div>
+    </div>
+
+    <script>
+
+        var Intidade = document.getElementById('quantidade');
+        Intidade.addEventListener('keyup',()=>{
+            pegaPokemons(Intidade.value)
+        })
+
+        pegaPokemons(23)
+        function pegaPokemons(quantidade){
+            fetch('https://pokeapi.co/api/v2/pokemon?limit='+quantidade)
+        .then(response => response.json())
+        .then((json)=>{
+
+            var pokemons = [];
+            
+            json.results.map((val)=>{
+                
+
+                fetch(val.url)
+                .then(response => response.json())
+                .then((pokeSingle)=>{
+                    pokemons.push({nome:val.name,imagem: pokeSingle.sprites.front_default})
+
+                    if(pokemons.length == quantidade){
+                        
+                        var pokeWrapper = document.querySelector('.poke-wrapper');
+                        pokeWrapper.innerHTML = "";
+
+                        pokemons.map((val)=>{
+                            pokeWrapper.innerHTML += `
+                            
+                            <div class="poke-single">
+                                <img src="${val.imagem}">
+                                <p>${val.nome}</p>
+                            </div>
+
+
+
+                            `;
+                        })
+
+                    }
+                })
+
+            })
+        });
+        }
+    </script>
+</body>
+</html>
